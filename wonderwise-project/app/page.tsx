@@ -2,7 +2,7 @@
 
 export default function Home() {
   return (
-    <div>Hello WonderWise</div>
+    <div className=" text-rose-500 text-2xl">Hello WonderWise!!</div>
   )
     
 }
