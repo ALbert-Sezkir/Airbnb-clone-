@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Nunito } from "next/font/google"; 
 import Navbar from "./components/navbar/navbar";
+import Modal from "./components//modals/Modal";
+// import ClientOnly from "./components/ClientOnly";
 
 const font = Nunito (
   {
@@ -35,8 +37,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${font.className} antialiased`}
-      >
+        >
+        <Modal/>
         <Navbar/>
+        {/* <ClientOnly> // om det blir problem med upplandningen av sidan, använd denna komponent
+
+        </ClientOnly> */}
+
 
         {children}
       </body>
