@@ -38,7 +38,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${font.className} antialiased`}
         >
-        <Modal/>
+        <Modal isOpen />
         <Navbar/>
         {/* <ClientOnly> // om det blir problem med upplandningen av sidan, använd denna komponent
 
