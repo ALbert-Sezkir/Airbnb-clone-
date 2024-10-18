@@ -6,6 +6,7 @@ import { Nunito } from "next/font/google";
 import Navbar from "./components/navbar/navbar";
 import RegisterModal from "./components/modals/RegisterModal";
 import ClientOnly from "./components/ClientOnly";
+import ToasterProvider from "./providers/ToasterProvider";
 
 const font = Nunito (
   {
@@ -39,7 +40,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${font.className} antialiased`}
         >
-        <ClientOnly> 
+        <ClientOnly>
+          <ToasterProvider/> 
         <RegisterModal/>
         <Navbar/>
 
