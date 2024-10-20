@@ -1,21 +1,31 @@
-import bcrypt from "bcrypt";
+import { NextResponse } from 'next/server';
+import { MongoClient } from 'mongodb';
 
-import prisma from "@/app/libs/prismadb";
-import { NextResponse } from "next/server";
+const uri = process.env.MONGODB_URI as string;
+const client = new MongoClient(uri);
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  const { email, name, password } = body;
+    try {
+        console.log('Connecting to database...');
+        await client.connect();
+        console.log('Connected to database.');
 
-  const hashedPassword = await bcrypt.hash(password, 12);
+        const body = await request.json();
+        const { email, name, password } = body;
 
-  const user = await prisma.user.create({
-    data: {
-      email,
-      name,
-      hashedPassword,
-    },
-  });
+        const database = client.db('test'); // Uppdatera med ditt nya databasnamn
+        const collection = database.collection('User'); // Uppdatera med ditt nya collectionsnamn
 
-  return NextResponse.json(user);
+        console.log('Inserting data into database...');
+        const result = await collection.insertOne({ email, name, password });
+        console.log('Data inserted into database:', result);
+
+        return NextResponse.json({ message: 'User registered successfully' });
+    } catch (error) {
+        console.error('Error registering user:', error);
+        return NextResponse.error();
+    } finally {
+        await client.close();
+        console.log('Database connection closed.');
+    }
 }

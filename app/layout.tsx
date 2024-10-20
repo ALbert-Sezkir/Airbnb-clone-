@@ -5,7 +5,7 @@ import "./globals.css";
 import { Nunito } from "next/font/google"; 
 import Navbar from "./components/navbar/navbar";
 import RegisterModal from "./components/modals/RegisterModal";
-import ClientOnly from "./components/ClientOnly";
+// import ClientOnly from "./components/ClientOnly";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
@@ -46,13 +46,14 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${font.className} antialiased`}
         >
-        <ClientOnly>
+        {/* <ClientOnly>
+
+        </ClientOnly> */}
           <ToasterProvider/> 
           <LoginModal/>
-          <RegisterModal/>
+          <RegisterModal/> 
+           
           <Navbar currentUser={currentUser}/>
-
-        </ClientOnly>
 
 
         {children}
