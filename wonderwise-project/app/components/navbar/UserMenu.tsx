@@ -6,8 +6,18 @@ import { useCallback, useState } from "react";
 import MenyItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
-const UserMenu = () => {
+interface UserMenuProps {
+    currentUser?: SafeUser | null
+
+
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({
+    currentUser
+}) => {
     
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
@@ -68,6 +78,44 @@ const UserMenu = () => {
             '
             >
                 <div className='flex flex-col cursor-pointer'>
+                    {currentUser ? (
+
+                    <>
+                    <MenyItem
+                    onClick={ () => {} }
+                    label='My trips'
+
+                    />
+                    <MenyItem
+                    onClick={() => {} }
+                    label='My favorites'
+
+                    />
+                    <MenyItem
+                    onClick={() => {} }
+                    label='My reservations'
+
+                    />
+                    <MenyItem
+                    onClick={() => {} }
+                    label='My properties'
+
+                    />
+                    <MenyItem
+                    onClick={() => {} }
+                    label='WanderWise My home'
+
+                    />
+                    <hr />
+                    <MenyItem
+                    onClick={() => signOut() }
+                    label='Logout'
+
+                    />
+                    </>
+
+                    ) : ( 
+                    
                     <>
                     <MenyItem
                     onClick={loginModal.onOpen}
@@ -80,6 +128,7 @@ const UserMenu = () => {
                     
                     />
                     </>
+                    )}
                 
 
                 </div>
