@@ -1,61 +1,46 @@
-
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
+
 import "./globals.css";
-import { Nunito } from "next/font/google"; 
-import Navbar from "./components/navbar/navbar";
+
+import Navbar from "./components/navbar/Navbar";
+import ClientOnly from "./components/ClientOnly";
 import RegisterModal from "./components/modals/RegisterModal";
-// import ClientOnly from "./components/ClientOnly";
-import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
-import getCurrentUser from "./actions/getCurrentUser";
+import RentModal from "./components/modals/RentModal";
 
-const font = Nunito (
-  {
-    subsets: ["latin"], 
-  }
-)
+import getCurrentUser from "./actions/getCurrentUsers";
+import ToasterProvider from "./providers/ToasterProvider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "WonderWise",
-  description: "WonderWise booking platform",
+  title: "Airbnb",
+  description: "Airbnb clone",
 };
+
+const font = Nunito({
+  subsets: ["latin"],
+});
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
   const currentUser = await getCurrentUser();
-  
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${font.className} antialiased`}
-        >
-        {/* <ClientOnly>
-
-        </ClientOnly> */}
-          <ToasterProvider/> 
-          <LoginModal/>
-          <RegisterModal/> 
-           
-          <Navbar currentUser={currentUser}/>
-
-
+      <body className={font.className}>
+        <ClientOnly>
+          <ToasterProvider />
+          <RegisterModal />
+          <LoginModal />
+          <RentModal />
+          <Navbar currentUser={currentUser} />
+        </ClientOnly>
         {children}
       </body>
     </html>
