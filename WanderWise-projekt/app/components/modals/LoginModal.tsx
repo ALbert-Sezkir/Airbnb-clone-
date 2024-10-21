@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
@@ -16,7 +15,7 @@ import Input from "../inputs/Input";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
-import { log } from "console";
+
 
 const LoginModal = () => {
   const router = useRouter();
@@ -101,18 +100,13 @@ const LoginModal = () => {
         onClick={() => signIn("github")}
       />
       <div
-        className="
-        text-neutral-500
-        text-center
-        mt-4
-        font-light
-          "
+        className="mt-4 font-light text-center text-neutral-500"
       >
-        <div className="justify-center flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center justify-center gap-2">
           <div>First time using Airbnb?</div>
           <div
             onClick={toggle}
-            className="text-neutral-800 cursor-pointer hover:underline"
+            className="cursor-pointer text-neutral-800 hover:underline"
           >
             Create an account
           </div>
