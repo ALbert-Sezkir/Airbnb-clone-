@@ -17,7 +17,7 @@ interface ListingCardProps {
   currentUser?: SafeUser | null;
 }
 
-const ListingCard: React.FC<ListingCardProps> = ({
+const ListingCard1: React.FC<ListingCardProps> = ({
   data,
   reservation,
   onAction,
@@ -46,4 +46,4 @@ const ListingCard: React.FC<ListingCardProps> = ({
   return <div>Cards</div>;
 };
 
-export default ListingCard;
+export default ListingCard1;
