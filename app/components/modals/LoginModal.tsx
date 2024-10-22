@@ -107,7 +107,7 @@ const LoginModal = () => {
           "
       >
         <div className="justify-center flex flex-row items-center gap-2">
-          <div>First time using Airbnb?</div>
+          <div>First time using WanderWise?</div>
           <div
             onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
