@@ -44,10 +44,47 @@
 // }
 
 
+// import prisma from "@/app/libs/prismadb";
+// import { SafeListing, SafeUser } from "@/app/types";
+
+// const getListingById = async (params: { listingId?: string }): Promise<SafeListing & { user: SafeUser } | null> => {
+//     const { listingId } = params;
+
+//     if (!listingId) {
+//         return null;
+//     }
+
+//     const listing = await prisma.listing.findUnique({
+//         where: { id: listingId },
+//         include: { user: true },
+//     });
+
+//     if (!listing) {
+//         return null;
+//     }
+
+//     return {
+//         ...listing,
+//         createdAt: listing.createdAt.toISOString(),
+//         user: {
+//             ...listing.user,
+//             createdAt: listing.user.createdAt.toISOString(),
+//             updatedAt: listing.user.updatedAt.toISOString(),
+//             emailVerified: listing.user.emailVerified?.toISOString() || null,
+//         },
+//     };
+// };
+
+// export default getListingById;
+
 import prisma from "@/app/libs/prismadb";
 import { SafeListing, SafeUser } from "@/app/types";
 
-const getListingById = async (params: { listingId?: string }): Promise<SafeListing & { user: SafeUser } | null> => {
+interface IParams {
+    listingId?: string; 
+}
+
+const getListingById = async (params: IParams): Promise<SafeListing & { user: SafeUser } | null> => {
     const { listingId } = params;
 
     if (!listingId) {
@@ -76,4 +113,6 @@ const getListingById = async (params: { listingId?: string }): Promise<SafeListi
 };
 
 export default getListingById;
+
+
 
