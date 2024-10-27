@@ -113,6 +113,3 @@ const getListingById = async (params: IParams): Promise<SafeListing & { user: Sa
 };
 
 export default getListingById;
-
-
-
