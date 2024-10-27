@@ -5,7 +5,6 @@ import getCurrentUser from "@/app/actions/getCurrentUsers";
 
 
 export async function POST(request: Request) {
-  const headers = await request.headers;
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
