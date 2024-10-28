@@ -3,6 +3,7 @@ import EmptyState from "../components/EmptyState";
 import getCurrentUser from "../actions/getCurrentUsers";
 import getReservations from "../actions/getReservations";
 import TripsClient from "./TripsClient";
+import { Suspense } from "react";
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -24,7 +25,14 @@ const TripsPage = async () => {
     return <EmptyState title="No trips found" subtitle="You have no trips to show" />;
   }
 
-  return <TripsClient reservations={reservations} currentUser={currentUser} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TripsClient reservations={reservations} currentUser={currentUser} />
+    </Suspense>
+  );
+
+  // return <TripsClient reservations={reservations} currentUser={currentUser} />;
 };
 
 export default TripsPage;
+

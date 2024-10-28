@@ -4,6 +4,7 @@ import ClientOnly from "../components/ClientOnly";
 import getCurrentUser from "../actions/getCurrentUsers";
 import getFavoriteListings from "../actions/getFavoritesListings";
 import FavoritesClient from "./FavoritesClient";
+import { Suspense } from "react";
 
 
 const ListingPage = async () => {
@@ -22,14 +23,23 @@ const ListingPage = async () => {
         </ClientOnly>
     )
 }
-return(
-    <ClientOnly> 
-        <FavoritesClient
-        listings={listings}
-        currentUser={currentUser}
-        />    
+
+return (
+    <ClientOnly>
+      <Suspense fallback={<div>Loading...</div>}>
+        <FavoritesClient listings={listings} currentUser={currentUser} />
+      </Suspense>
     </ClientOnly>
-)
+  );
+
+// return(
+//     <ClientOnly> 
+//         <FavoritesClient
+//         listings={listings}
+//         currentUser={currentUser}
+//         />    
+//     </ClientOnly>
+// )
 
 
 }

@@ -3,6 +3,7 @@ import EmptyState from "../components/EmptyState";
 import getCurrentUser from "../actions/getCurrentUsers";
 import getListings from "../actions/getListings";
 import PropertiesClient from "./PropertiesClient";
+import { Suspense } from "react";
 
 
 const PropertiesPage = async () => {
@@ -25,7 +26,13 @@ const PropertiesPage = async () => {
     );
   }
 
-  return <PropertiesClient listings={listings} currentUser={currentUser} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PropertiesClient listings={listings} currentUser={currentUser} />
+    </Suspense>
+  );
+
+  // return <PropertiesClient listings={listings} currentUser={currentUser} />;
 };
 
 export default PropertiesPage;

@@ -4,6 +4,7 @@ import ClientOnly from "../components/ClientOnly";
 import getCurrentUser from "../actions/getCurrentUsers";
 import getReservations from "../actions/getReservations";
 import ReservationsClient from "./ReservationsClient";
+import { Suspense } from "react";
 
 const ReservationsPage = async () => {
     const currentUser = await getCurrentUser();
@@ -34,13 +35,19 @@ const ReservationsPage = async () => {
             </ClientOnly>
         )
     }
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+          <ReservationsClient reservations={reservations} currentUser={currentUser} />
+        </Suspense>
+      );
     
-    return <ClientOnly>
-        <ReservationsClient 
-        reservations={reservations} 
-        currentUser={currentUser} 
-        />
-    </ClientOnly>;
+    // return <ClientOnly>
+    //     <ReservationsClient 
+    //     reservations={reservations} 
+    //     currentUser={currentUser} 
+    //     />
+    // </ClientOnly>;
     }
 
     export default ReservationsPage;
