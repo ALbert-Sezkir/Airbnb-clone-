@@ -24,22 +24,15 @@ const ListingPage = async () => {
     )
 }
 
-return (
-    <ClientOnly>
-      <Suspense fallback={<div>Loading...</div>}>
-        <FavoritesClient listings={listings} currentUser={currentUser} />
-      </Suspense>
-    </ClientOnly>
-  );
 
-// return(
-//     <ClientOnly> 
-//         <FavoritesClient
-//         listings={listings}
-//         currentUser={currentUser}
-//         />    
-//     </ClientOnly>
-// )
+return(
+    <ClientOnly> 
+        <FavoritesClient
+        listings={listings}
+        currentUser={currentUser}
+        />    
+    </ClientOnly>
+)
 
 
 }

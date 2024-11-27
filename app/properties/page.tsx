@@ -26,13 +26,9 @@ const PropertiesPage = async () => {
     );
   }
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <PropertiesClient listings={listings} currentUser={currentUser} />
-    </Suspense>
-  );
+ 
 
-  // return <PropertiesClient listings={listings} currentUser={currentUser} />;
+  return <PropertiesClient listings={listings} currentUser={currentUser} />;
 };
 
 export default PropertiesPage;
